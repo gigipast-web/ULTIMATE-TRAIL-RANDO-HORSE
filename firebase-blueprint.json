@@ -1,0 +1,131 @@
+{
+  "entities": {
+    "Organizer": {
+      "title": "Organizer",
+      "description": "An organizer profile",
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "description": "Email or unique identifier of the organizer"
+        },
+        "name": {
+          "type": "string",
+          "description": "The printed name of the organizer club/association"
+        },
+        "region": {
+          "type": "string",
+          "description": "Default regional territory of operations"
+        }
+      },
+      "required": ["username", "name"]
+    },
+    "Route": {
+      "title": "RouteData",
+      "description": "Geospatial trail tracking track with structural checkpoints",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Descriptive track name"
+        },
+        "length": {
+          "type": "number",
+          "description": "Total length in kilometers"
+        },
+        "category": {
+          "type": "string",
+          "description": "Sought competitor sport medium"
+        },
+        "region": {
+          "type": "string",
+          "description": "Geographical region"
+        },
+        "organizerId": {
+          "type": "string",
+          "description": "ID of creator organization"
+        },
+        "organizerName": {
+          "type": "string",
+          "description": "Printed agency name"
+        }
+      },
+      "required": ["name", "length", "category"]
+    },
+    "Runner": {
+      "title": "RunnerStatus",
+      "description": "The real-time geospatial checkpoint logs and safety status of an active athlete",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Runner public name"
+        },
+        "type": {
+          "type": "string",
+          "description": "Sport type"
+        },
+        "bibNumber": {
+          "type": "string",
+          "description": "Compulsory identification bib code"
+        },
+        "lat": {
+          "type": "number",
+          "description": "Latitude coordinate"
+        },
+        "lng": {
+          "type": "number",
+          "description": "Longitude coordinate"
+        },
+        "speed": {
+          "type": "number",
+          "description": "Real-time estimated velocity in decimal km/h"
+        },
+        "lastActive": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp indicating the last recorded contact"
+        },
+        "status": {
+          "type": "string",
+          "description": "Core active, security danger, warning or completed state"
+        },
+        "statusReason": {
+          "type": "string",
+          "description": "Safety logs details"
+        },
+        "progress": {
+          "type": "number",
+          "description": "Track completeness multiplier ratio"
+        },
+        "distanceCovered": {
+          "type": "number",
+          "description": "Total covered distance in km"
+        },
+        "distanceRemaining": {
+          "type": "number",
+          "description": "Remaining track length"
+        },
+        "currentRank": {
+          "type": "number",
+          "description": "Rank placeholder in standings"
+        }
+      },
+      "required": ["name", "type", "bibNumber", "lat", "lng", "status", "progress"]
+    }
+  },
+  "firestore": {
+    "organizers/{organizerId}": {
+      "schema": "Organizer",
+      "description": "Organization details for organizers registered"
+    },
+    "routes/{routeId}": {
+      "schema": "Route",
+      "description": "Geospatial tracks managed by organizers"
+    },
+    "routes/{routeId}/runners/{runnerId}": {
+      "schema": "Runner",
+      "description": "The dynamic telemetry feeds of individual competitors during a live race"
+    }
+  }
+}
