@@ -1,0 +1,10 @@
+{
+  "name": "ULTIMATE TRAIL VTT RANDO HORSE",
+  "description": "Suivi GPS en temps réel pour coureurs, VTT et cavaliers. Inscriptions, paiements Stripe Connect et console d'administration.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
